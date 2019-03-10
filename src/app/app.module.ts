@@ -1,40 +1,40 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-
 import { AppComponent } from './app.component';
-import { SearchComponent } from './components/search/search.component';
-
-import { MoviesService } from './services/movies.service';
-import { FeaturedComponent } from './components/featured/featured.component';
-
-import { appRoutingProvider } from './app.routes';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
+import { AppRoutingProvider } from './app.routes';
+import { FeaturedComponent } from './featured/featured.component';
+import { FooterComponent } from './shared/footer/footer.component';
+import { HeaderComponent } from './shared/header/header.component';
+import { MoviesService } from './core/services/movies.service';
+import { SearchComponent } from './search/search.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SearchComponent,
     FeaturedComponent,
-    HeaderComponent,
     FooterComponent,
-    PageNotFoundComponent
+    HeaderComponent,
+    PageNotFoundComponent,
+    SearchComponent
   ],
   imports: [
+    AppRoutingProvider,
     BrowserModule,
-    HttpClientModule,
     FormsModule,
-    RouterModule,
-    appRoutingProvider,
-    ReactiveFormsModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    RouterModule
   ],
-  providers: [MoviesService],
-  bootstrap: [AppComponent]
+  providers: [
+    MoviesService
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

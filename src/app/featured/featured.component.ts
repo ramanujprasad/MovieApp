@@ -1,9 +1,9 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { get as _get } from 'lodash';
-import { Observable } from 'rxjs';
-import { MoviesService } from '../../services/movies.service';
-import { CONSTANTS } from '../../shared/constants'
+import { throwError } from 'rxjs';
+import { CONSTANTS } from '../shared/constants/constants';
+import { MoviesService } from '../core/services/movies.service';
 
 @Component({
   selector: 'app-featured',
@@ -15,7 +15,7 @@ export class FeaturedComponent implements OnInit {
   // Pre-defined movies list
   featuredMovie: Array<string> = ['Avatar', 'Batman'];
   movieList: Array<Object> = [];
-  isDone: boolean = false;
+  isDone: Boolean = false;
 
   constructor(private _movieService: MoviesService) {}
 
@@ -31,6 +31,8 @@ export class FeaturedComponent implements OnInit {
       }, err => this.handleError(err));
     });
   }
+
+  // Extract the error in case of error
   handleError(error) {
     let errMsg: string;
     if (error instanceof Response) {
@@ -41,6 +43,6 @@ export class FeaturedComponent implements OnInit {
       errMsg = error.message ? error.message : error.toString();
     }
     console.error(errMsg);
-    return Observable.throw(errMsg);
+    return throwError(errMsg);
   }
 }

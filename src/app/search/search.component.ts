@@ -1,9 +1,9 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { get as _get } from 'lodash';
-import { Observable } from 'rxjs';
-import { MoviesService } from '../../services/movies.service';
-import { CONSTANTS } from '../../shared/constants';
+import { throwError } from 'rxjs';
+import { CONSTANTS } from '../shared/constants/constants';
+import { MoviesService } from '../core/services/movies.service';
 
 @Component({
   selector: 'app-search',
@@ -17,15 +17,15 @@ export class SearchComponent implements OnInit {
   awards: string;
   directorList: Array<string>;
   genereList: Array<string>;
-  hasMore: boolean = false;
-  hasMovieFound: boolean = false;
+  hasMore: Boolean = false;
+  hasMovieFound: Boolean = false;
   imdbRating: string;
   imdbVotes: number;
-  isDone: boolean = false;
+  isDone: Boolean = false;
   languageList: Array<string>;
   listOfRatings: Array<Object>;
   myForm: FormGroup;
-  originalPlot:string;
+  originalPlot: string;
   plot: string;
   plots: Array<Object> = [
     { id: 0, name: CONSTANTS.PLOT_SHORT },
@@ -39,17 +39,17 @@ export class SearchComponent implements OnInit {
   type: string;
   writerList: Array<string>;
   year: string;
- 
+
   constructor(
     private _movieService: MoviesService,
     private fb: FormBuilder
   ) {}
-  
+
   ngOnInit() {
     this.myForm = this.fb.group({
       inputTitle: ['', Validators.required],
       inputPlot: [this.plots[1][CONSTANTS.PLOT_NAME]]
-    })
+    });
   }
   searchMovies() {
     this._movieService.searchMovies(this.myForm.value.inputTitle, this.myForm.value.inputPlot.toLowerCase())
@@ -89,12 +89,14 @@ export class SearchComponent implements OnInit {
           this.hasMovieFound = false;
           console.log(`Movie Not found!`);
         }
-        
+
         this.isDone = true;
         this.morePlot();
 
       }, err => this.handleError(err));
   }
+
+  // Extract the error in case of error
   handleError(error) {
     this.hasMovieFound = false;
     let errMsg: string;
@@ -106,7 +108,7 @@ export class SearchComponent implements OnInit {
       errMsg = error.message ? error.message : error.toString();
     }
     console.error(errMsg);
-    return Observable.throw(errMsg);
+    return throwError(errMsg);
   }
 
   // To make the list by splitting the string based on comma ','
@@ -115,26 +117,26 @@ export class SearchComponent implements OnInit {
       return data.split(CONSTANTS.COMMA);
     }
   }
-  
+
   // To substring the character it's length is more than 200 & show 'Read more' feature
-  morePlot(){
-    this.originalPlot = this.plot
+  morePlot() {
+    this.originalPlot = this.plot;
     if (this.plot && this.plot.length > CONSTANTS.PLOT_LENGTH) {
       this.hasMore = true;
-      this.plot = this.plot.substring(0, CONSTANTS.PLOT_LENGTH-1);
+      this.plot = this.plot.substring(0, CONSTANTS.PLOT_LENGTH - 1);
     } else {
       this.hasMore = false;
     }
   }
 
   // Acts on the click of 'Read less' & shorten the length to 200
-  readLessPlot(){
+  readLessPlot() {
     this.hasMore = true;
-    this.plot = this.plot.substring(0, CONSTANTS.PLOT_LENGTH-1);
+    this.plot = this.plot.substring(0, CONSTANTS.PLOT_LENGTH - 1);
   }
 
   // Acts on the click of 'Read more' & display complete charater
-  readMorePlot(){
+  readMorePlot() {
     this.hasMore = false;
     this.plot = this.originalPlot;
   }
