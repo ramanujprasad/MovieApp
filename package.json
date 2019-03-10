@@ -1,11 +1,11 @@
 {
   "author": "Ramanuj Prasad <pd.ramanuj@gmail.com>",
-  "description": "",
+  "description": "Web application in which information about movies can be easily accessed",
   "name": "movie-app",
   "version": "1.0.0",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/ramanujprasad/MovieApp.git"
   },
   "scripts": {
     "build": "webpack",
