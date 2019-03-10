@@ -24,5 +24,6 @@ export const CONSTANTS = {
     MOVIE_ACTORS: 'Actors',
     MOVIE_LANGUAGE: 'Language',
     MOVIE_RATINGS: 'Ratings',
-    COMMA: ','
+    COMMA: ',',
+    NOT_AVAILABLE: 'N/A'
 };

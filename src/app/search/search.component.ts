@@ -3,6 +3,7 @@ import { FormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms'
 import { get as _get } from 'lodash';
 import { throwError } from 'rxjs';
 import { CONSTANTS } from '../shared/constants/constants';
+import { Movie } from '../core/typings/movie';
 import { MoviesService } from '../core/services/movies.service';
 
 @Component({
@@ -14,13 +15,10 @@ import { MoviesService } from '../core/services/movies.service';
 
 export class SearchComponent implements OnInit {
   actorsList: Array<string>;
-  awards: string;
   directorList: Array<string>;
   genereList: Array<string>;
   hasMore: Boolean = false;
   hasMovieFound: Boolean = false;
-  imdbRating: string;
-  imdbVotes: number;
   isDone: Boolean = false;
   languageList: Array<string>;
   listOfRatings: Array<Object>;
@@ -31,14 +29,8 @@ export class SearchComponent implements OnInit {
     { id: 0, name: CONSTANTS.PLOT_SHORT },
     { id: 1, name: CONSTANTS.PLOT_FULL }
   ];
-  poster: string;
-  rated: string;
-  released: string;
-  runtime: string;
-  title: string;
-  type: string;
+  resultedMovie: Movie;
   writerList: Array<string>;
-  year: string;
 
   constructor(
     private _movieService: MoviesService,
@@ -53,47 +45,37 @@ export class SearchComponent implements OnInit {
   }
   searchMovies() {
     this._movieService.searchMovies(this.myForm.value.inputTitle, this.myForm.value.inputPlot.toLowerCase())
-      .subscribe(res => {
+      .subscribe((res: Movie) => {
         if (res['Response'] !== 'False') {
           this.hasMovieFound = true;
-          this.title = _get(res, CONSTANTS.MOVIE_TITLE);
-          this.year = _get(res, CONSTANTS.MOVIE_YEAR);
-          this.rated = _get(res, CONSTANTS.MOVIE_RATED);
-          this.rated = _get(res, CONSTANTS.MOVIE_RUNTIME);
-          this.released = _get(res, CONSTANTS.MOVIE_RELEASED);
-          this.plot = _get(res, CONSTANTS.MOVIE_PLOT);
-          this.awards = _get(res, CONSTANTS.MOVIE_AWARDS);
-          this.poster = _get(res, CONSTANTS.MOVIE_POSTER);
-          this.imdbRating = _get(res, CONSTANTS.MOVIE_IMDBRATINGS);
-          this.imdbVotes = _get(res, CONSTANTS.MOVIE_IMDBVOTES);
-          this.type = _get(res, CONSTANTS.MOVIE_TYPE);
-          if (res[CONSTANTS.MOVIE_GENRE]) {
-            this.genereList = this.generateList(res[CONSTANTS.MOVIE_GENRE]);
-          }
-          if (res[CONSTANTS.MOVIE_DIRECTOR]) {
-            this.directorList = this.generateList(res[CONSTANTS.MOVIE_DIRECTOR]);
-          }
-          if (res[CONSTANTS.MOVIE_WRITER]) {
-            this.writerList = this.generateList(res[CONSTANTS.MOVIE_WRITER]);
-          }
-          if (res[CONSTANTS.MOVIE_ACTORS]) {
-            this.actorsList = this.generateList(res[CONSTANTS.MOVIE_ACTORS]);
-          }
-          if (res[CONSTANTS.MOVIE_LANGUAGE]) {
-            this.languageList = this.generateList(res[CONSTANTS.MOVIE_LANGUAGE]);
-          }
-          if (res[CONSTANTS.MOVIE_RATINGS] && res[CONSTANTS.MOVIE_RATINGS].length > 0) {
-            this.listOfRatings = res[CONSTANTS.MOVIE_RATINGS];
-          }
+          this.resultedMovie = res;
+          this.alterValue(this.resultedMovie);
         } else {
           this.hasMovieFound = false;
           console.log(`Movie Not found!`);
         }
-
         this.isDone = true;
         this.morePlot();
 
       }, err => this.handleError(err));
+  }
+  alterValue(movieDetails) {
+    // create actor list
+    this.actorsList = movieDetails.Actors ? this.generateList(movieDetails.Actors) : CONSTANTS.NOT_AVAILABLE;
+    // create director list
+    this.directorList = movieDetails.Director ? this.generateList(movieDetails.Director) : CONSTANTS.NOT_AVAILABLE;
+    // create genere list
+    this.genereList = movieDetails.Genre ? this.generateList(movieDetails.Genre) : CONSTANTS.NOT_AVAILABLE;
+    // create language list
+    this.languageList = movieDetails.Language ? this.generateList(movieDetails.Language) : CONSTANTS.NOT_AVAILABLE;
+    // create writer list
+    this.writerList = movieDetails.Writer ? this.generateList(movieDetails.Writer) : CONSTANTS.NOT_AVAILABLE;
+    // create ratings list
+    if (movieDetails.Ratings && movieDetails.Ratings.length > 0) {
+      this.listOfRatings = movieDetails.Ratings;
+    }
+    // Assign plot
+    this.plot = movieDetails.Plot ? movieDetails.Plot : CONSTANTS.NOT_AVAILABLE;
   }
 
   // Extract the error in case of error
