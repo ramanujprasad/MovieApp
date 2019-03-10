@@ -10,7 +10,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ```
 git clone https://github.com/ramanujprasad/MovieApp.git
-cd movie-app
+cd MovieApp
 ```
 ## Download dependencies
 
@@ -28,9 +28,9 @@ Run `npm run lint` to execute the linting for ts files.
 
 ## Deployment
 
-This project is deployed in github using ghpages,
+This project is deployed in below link for testing,
 https://ramanujprasad.github.io/MovieApp/
 
 ## Authors
 
-* **Ramanuj Prasad** - [Git hub](https://github.com/ramanujprasad/MovieApp)
+Ramanuj Prasad - [Git hub](https://github.com/ramanujprasad/MovieApp)

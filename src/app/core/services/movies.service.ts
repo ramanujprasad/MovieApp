@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable()
 export class MoviesService {
-  private searchUrl = 'http://www.omdbapi.com/';
+  private searchUrl = 'https://www.omdbapi.com/';
   private apiKey = '6c3a2d45';
 
   constructor (private httpClient: HttpClient) {}
