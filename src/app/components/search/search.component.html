@@ -1,0 +1,127 @@
+<div>
+    <h2>Search Movies</h2>
+    <form [formGroup]="myForm" novalidate (ngSubmit)="searchMovies()">
+        <div class="row">
+            <div class="form-group col-md-8 col-sm-6 col-xs-12">
+                <input type="text" class="form-control" name="inputTitle" placeholder="Search for a movie by title name" formControlName="inputTitle">
+            </div>
+            <div class="form-group col-md-2 col-sm-6 col-xs-12">
+                <select class="form-control" formControlName="inputPlot">
+                    <option *ngFor="let plot of plots" [value]="plot.name">{{plot.name}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-2 col-sm-12 col-xs-12">
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+<br>
+<!--Search Result Area-->
+<div *ngIf="isDone" class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Search Results</h3>
+    </div>
+    <div *ngIf="title && hasMovieFound" class="panel-body">
+        <div class="row">
+            <div id="item">
+                <div>
+                    <div class="panel panel-primary">
+                        <div class="panel-heading"><div>
+                        <h2 *ngIf="title">{{title}} <span *ngIf="year">( {{year}} )</span></h2>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <span>
+                            <img *ngIf="poster && poster !== 'N/A'" src="{{poster}}" class="img-responsive">
+                            <img *ngIf="!poster || poster === 'N/A'" src="../../../assets/noimagefound.jpg" class="img-responsive">
+                        </span>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <h5 *ngIf="plot">
+                            <b class="text-primary">Plot: </b>
+                            <span>{{plot}} 
+                                <span *ngIf="hasMore" (click) = "readMorePlot()" class="read-more">Read more</span> 
+                                <span *ngIf="!hasMore && this.plot.length > 200" (click) = "readLessPlot()" class="read-more">Read less</span>
+                            </span>
+                        </h5>
+                        <h5 *ngIf="rated">
+                            <b class="text-primary">Rated: </b>
+                            <span>{{rated}}</span>
+                        </h5>
+                        <h5 *ngIf="runtime">
+                            <b class="text-primary">Runtime: </b>
+                            <span>{{runtime}}</span>
+                        </h5>
+                        <h5 *ngIf="genereList">
+                            <b class="text-primary">Genre:</b>
+                            <ul>
+                                <li *ngFor="let genere of genereList">{{genere}}</li>
+                            </ul>
+                        </h5>
+                        <h5 *ngIf="languageList">
+                            <b class="text-primary">Language:</b>
+                            <ul>
+                                <li *ngFor="let language of languageList">{{language}}</li>
+                            </ul>
+                        </h5>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <h5 *ngIf="released">
+                            <b class="text-primary">Released: </b>
+                            <span>{{released}}</span>
+                        </h5>
+                        <h5 *ngIf="actorsList">
+                            <b class="text-primary">Actors:</b>
+                            <ul>
+                                <li *ngFor="let actor of actorsList">{{actor}}</li>
+                            </ul>
+                        </h5>
+                        <h5 *ngIf="writerList">
+                            <b class="text-primary">Writer:</b>
+                            <ul>
+                                <li *ngFor="let writer of writerList">{{writer}}</li>
+                            </ul>
+                        </h5>
+                        <h5 *ngIf="directorList">
+                            <b class="text-primary">Director:</b>
+                            <ul>
+                                <li *ngFor="let director of directorList">{{director}}</li>
+                            </ul>
+                        </h5>
+                    </div>
+                    <div class="col-md-3 col-sm-6 col-xs-12">
+                        <h5 *ngIf="listOfRatings">
+                            <b class="text-primary">Ratings:</b>
+                            <ul>
+                                <li *ngFor="let ratings of listOfRatings">{{ratings.Source}}: <span>{{ratings.Value}}</span></li>
+                            </ul>
+                        </h5>
+                        <h5 *ngIf="imdbRating">
+                            <b class="text-primary">imdbRating: </b>
+                            <span>{{imdbRating}}</span>
+                        </h5>
+                        <h5 *ngIf="imdbVotes">
+                            <b class="text-primary">imdbVotes: </b>
+                            <span>{{imdbVotes}}</span>
+                        </h5>
+                        <h5 *ngIf="type">
+                            <b class="text-primary">Type: </b>
+                            <span>{{type}}</span>
+                        </h5>
+                    </div>
+                </div>
+                <div *ngIf="awards" class="card bg-primary text-white">
+                    <p class="text-center">Awards: <b>{{awards}}</b></p>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="!title || !hasMovieFound" class="text-center text-danger">
+        <h3>Sorry, we didn't find any matching result.</h3>
+        <p>Please try with other combination...</p>
+    </div>
+</div>

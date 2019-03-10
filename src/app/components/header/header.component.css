@@ -1,0 +1,14 @@
+.navbar-content,
+.navbar-title {
+    color: #FFF;
+}
+.navbar-content:hover,
+.navbar-content:active {
+    color: #337ab7;
+}
+.navbar-btn {
+    background-color: #FFF;
+}
+.navbar-icon-bar {
+    background-color: #337ab7;
+}

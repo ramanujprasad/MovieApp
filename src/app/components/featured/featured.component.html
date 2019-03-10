@@ -1,0 +1,31 @@
+<div *ngIf="isDone" class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Featured Movies</h3>
+    </div>
+    <div class="panel-body">
+      <div *ngFor="let movie of movieList" class="col-md-6 col-sm-6 col-xs-12">
+          <div class="panel panel-primary">
+              <div class="panel-heading">
+                  <div>
+                    <h2 *ngIf="movie?.Title">{{movie?.Title}} <span *ngIf="movie?.Year">( {{movie?.Year}} )</span></h2>
+                  </div>
+              </div>
+              <div class="panel-body">
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                      <img *ngIf="movie?.Poster" class="img-responsive" src="{{movie?.Poster}}" alt="Movie image">
+                  </div>
+                  <div class="col-md-6 col-sm-6 col-xs-12">
+                      <h5 *ngIf="movie?.Plot">
+                          <b class="text-primary">Plot: </b>
+                          <span>{{movie?.Plot}}</span>
+                      </h5>
+                      <h5 *ngIf="movie?.Awards" >
+                          <b class="text-primary">Awards: </b>
+                          <span>{{movie?.Awards}}</span>
+                      </h5>
+                  </div>
+              </div>
+          </div>
+          </div>
+      </div>
+</div>
