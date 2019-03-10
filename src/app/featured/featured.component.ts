@@ -1,6 +1,5 @@
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { get as _get } from 'lodash';
 import { throwError } from 'rxjs';
 import { CONSTANTS } from '../shared/constants/constants';
 import { MoviesService } from '../core/services/movies.service';
