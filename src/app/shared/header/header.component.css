@@ -12,3 +12,14 @@
 .navbar-icon-bar {
     background-color: #337ab7;
 }
+.movie-icon {
+    float: left;
+    font-size: 20px;
+    margin: 10px 5px 0 0;
+}
+/* media query for mobile size of max width 768px */
+@media only screen and (max-width: 768px) {
+    .movie-icon {
+        margin: 10px -10px 0 15px;
+    }
+}

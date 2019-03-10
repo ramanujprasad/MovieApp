@@ -4,6 +4,11 @@
         <div class="row">
             <div class="form-group col-md-8 col-sm-6 col-xs-12">
                 <input type="text" class="form-control" name="inputTitle" placeholder="Search for a movie by title name" formControlName="inputTitle">
+                <div *ngIf="myForm.controls['inputTitle'].invalid && (myForm.controls['inputTitle'].dirty || myForm.controls['inputTitle'].touched)" class="alert alert-danger">
+                    <div *ngIf="myForm.controls['inputTitle'].errors.required">
+                        Please provide movie title and search...
+                    </div>
+                </div>
             </div>
             <div class="form-group col-md-2 col-sm-6 col-xs-12">
                 <select class="form-control" formControlName="inputPlot">
@@ -11,7 +16,7 @@
                 </select>
             </div>
             <div class="form-group col-md-2 col-sm-12 col-xs-12">
-                <button type="submit" class="btn btn-primary">Search</button>
+                <button type="submit" class="btn btn-primary" [disabled]='myForm.invalid'>Search</button>
             </div>
         </div>
     </form>
