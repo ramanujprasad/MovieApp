@@ -19,6 +19,8 @@ export class FeaturedComponent implements OnInit {
   constructor(private _movieService: MoviesService) {}
 
   ngOnInit() {
+
+    // Subscribed the service to get the result by iterating with the pre-defined movie list
     this.featuredMovie.forEach((title) => {
       this._movieService.searchMovies(title, CONSTANTS.PLOT_FULL.toLowerCase()).subscribe(res => {
         if (res['Response'] !== 'False') {

@@ -9,6 +9,7 @@ export class MoviesService {
 
   constructor (private httpClient: HttpClient) {}
 
+  // Movie search service call
   searchMovies(title: string, plot: string) {
     const searchUrl = `${this.searchUrl}?apiKey=${this.apiKey}&t=${title}&plot=${plot}`;
     return this.httpClient.get(searchUrl, {responseType: 'json'});

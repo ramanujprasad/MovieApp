@@ -1,3 +1,4 @@
+<!-- Featured movie result template to populate the service response -->
 <div *ngIf="isDone" class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Featured Movies</h3>
@@ -12,7 +13,8 @@
               </div>
               <div class="panel-body">
                   <div class="col-md-6 col-sm-6 col-xs-12">
-                      <img *ngIf="movie?.Poster" class="img-responsive" src="{{movie?.Poster}}" alt="Movie image">
+                      <img *ngIf="movie?.Poster" src="{{movie?.Poster}}" class="img-responsive"  alt="Movie image">
+                      <img *ngIf="!movie?.Poster || movie?.Poster === 'N/A'" src="../../../assets/noimagefound.jpg" class="img-responsive" alt="Movie image not available">
                   </div>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                       <h5 *ngIf="movie?.Plot">

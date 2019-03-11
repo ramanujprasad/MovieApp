@@ -24,6 +24,8 @@ export class SearchComponent implements OnInit {
   myForm: FormGroup;
   originalPlot: string;
   plot: string;
+
+  // To populate the dropdown of plots
   plots: Array<Object> = [
     { id: 0, name: CONSTANTS.PLOT_SHORT },
     { id: 1, name: CONSTANTS.PLOT_FULL }
@@ -42,6 +44,8 @@ export class SearchComponent implements OnInit {
       inputPlot: [this.plots[1][CONSTANTS.PLOT_NAME]]
     });
   }
+
+  // Subscribed the service to get the result based on title & plot provided
   searchMovies() {
     this._movieService.searchMovies(this.myForm.value.inputTitle, this.myForm.value.inputPlot.toLowerCase())
       .subscribe((res: Movie) => {
@@ -58,17 +62,24 @@ export class SearchComponent implements OnInit {
 
       }, err => this.handleError(err));
   }
+
+  // Altered the value for the response based ',' separated data
   alterValue(movieDetails) {
     // create actor list
-    this.actorsList = movieDetails.Actors ? this.generateList(movieDetails.Actors) : CONSTANTS.NOT_AVAILABLE;
+    this.actorsList = movieDetails.Actors ? this.generateList(
+      movieDetails.Actors) : CONSTANTS.NOT_AVAILABLE;
     // create director list
-    this.directorList = movieDetails.Director ? this.generateList(movieDetails.Director) : CONSTANTS.NOT_AVAILABLE;
+    this.directorList = movieDetails.Director ? this.generateList(
+      movieDetails.Director) : CONSTANTS.NOT_AVAILABLE;
     // create genere list
-    this.genereList = movieDetails.Genre ? this.generateList(movieDetails.Genre) : CONSTANTS.NOT_AVAILABLE;
+    this.genereList = movieDetails.Genre ? this.generateList(
+      movieDetails.Genre) : CONSTANTS.NOT_AVAILABLE;
     // create language list
-    this.languageList = movieDetails.Language ? this.generateList(movieDetails.Language) : CONSTANTS.NOT_AVAILABLE;
+    this.languageList = movieDetails.Language ? this.generateList(
+      movieDetails.Language) : CONSTANTS.NOT_AVAILABLE;
     // create writer list
-    this.writerList = movieDetails.Writer ? this.generateList(movieDetails.Writer) : CONSTANTS.NOT_AVAILABLE;
+    this.writerList = movieDetails.Writer ? this.generateList(
+      movieDetails.Writer) : CONSTANTS.NOT_AVAILABLE;
     // create ratings list
     if (movieDetails.Ratings && movieDetails.Ratings.length > 0) {
       this.listOfRatings = movieDetails.Ratings;
@@ -121,5 +132,4 @@ export class SearchComponent implements OnInit {
     this.hasMore = false;
     this.plot = this.originalPlot;
   }
-
 }

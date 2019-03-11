@@ -1,6 +1,9 @@
+/* Custom css to make search button width to 100% within defined grid */
 .btn {
   width:100%;
 }
+
+/* Styling for 'read-more' plot feature */
 .read-more {
   color: #da6f6c;
   font-style: italic;

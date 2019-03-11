@@ -1,3 +1,4 @@
+<!-- Search Area -->
 <div>
     <h2>Search Movies</h2>
     <form [formGroup]="myForm" novalidate (ngSubmit)="searchMovies()">
@@ -22,7 +23,7 @@
     </form>
 </div>
 <br>
-<!--Search Result Area-->
+<!-- Search Result Area -->
 <div *ngIf="isDone" class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Search Results</h3>
@@ -40,8 +41,8 @@
                         <div class="panel-body">
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <span>
-                                    <img *ngIf="resultedMovie?.Poster && resultedMovie?.Poster !== 'N/A'" src="{{resultedMovie?.Poster}}" class="img-responsive">
-                                    <img *ngIf="!resultedMovie?.Poster || resultedMovie?.Poster === 'N/A'" src="../../../assets/noimagefound.jpg" class="img-responsive">
+                                    <img *ngIf="resultedMovie?.Poster && resultedMovie?.Poster !== 'N/A'" src="{{resultedMovie?.Poster}}" class="img-responsive" alt="Movie image">
+                                    <img *ngIf="!resultedMovie?.Poster || resultedMovie?.Poster === 'N/A'" src="../../../assets/noimagefound.jpg" class="img-responsive" alt="Movie image not available">
                                 </span>
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
@@ -126,6 +127,7 @@
             </div>
         </div>
     </div>
+    <!-- No result found Area -->
     <div *ngIf="!resultedMovie?.Title || !hasMovieFound" class="text-center text-danger">
         <h3>Sorry, we didn't find any matching result.</h3>
         <p>Please try with other combination...</p>

@@ -1,7 +1,15 @@
+
+/* Sticky footer styles
+-------------------------------------------------- */
 .footer {
     background-color: #337ab7;
+    bottom: 0;
+    height: 60px;
+    position: absolute;
     text-align: center;
+    width: 100%;
 }
-.footer-content {
+.container .footer-content {
     color: #FFF;
+    margin: 20px 0;
 }
