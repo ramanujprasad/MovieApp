@@ -6,7 +6,9 @@ const { AngularCompilerPlugin } = require('@ngtools/webpack');
 
 module.exports = function () {
     return {
-        entry: './src/main.ts',
+        entry: {
+            'app': './src/main.ts'
+        },
         output: {
             path: __dirname + '/dist',
             filename: 'app.js'
@@ -18,7 +20,8 @@ module.exports = function () {
             rules: [
                 {test: /\.ts$/, loaders: ['@ngtools/webpack']},
                 { test: /\.css$/, loader: 'raw-loader' },
-                { test: /\.html$/, loader: 'raw-loader' }
+                { test: /\.html$/, loader: 'raw-loader' },
+                { test: /[\/\\]@angular[\/\\].+\.js$/, parser: { system: true } }
             ]
         },
         plugins: [

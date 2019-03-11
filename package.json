@@ -8,7 +8,7 @@
     "url": "https://github.com/ramanujprasad/MovieApp.git"
   },
   "scripts": {
-    "build": "webpack",
+    "build": "webpack --mode development",
     "start": "npm run build && node server.js",
     "lint": "tslint --project tsconfig.json"
   },
@@ -26,7 +26,8 @@
     "tslint": "^5.13.1",
     "typescript": "3.2.4",
     "webpack": "^4.29.6",
-    "webpack-cli": "^3.2.3"
+    "webpack-cli": "^3.2.3",
+    "webpack-dev-server": "^3.2.1"
   },
   "dependencies": {
     "@angular/common": "^7.2.8",
@@ -37,8 +38,11 @@
     "@angular/platform-browser": "^7.2.8",
     "@angular/platform-browser-dynamic": "^7.2.8",
     "@angular/router": "^7.2.8",
+    "bootstrap": "3.4.0",
+    "core-js": "^2.6.5",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
+    "ie-shim": "^0.1.0",
     "rxjs": "^6.4.0",
     "zone.js": "^0.8.29"
   }
