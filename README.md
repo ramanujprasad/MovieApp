@@ -26,6 +26,12 @@ This checks if there is any linting error in the code
 
 Run `npm run lint` to execute the linting for ts files.
 
+## Run End-2-End testing
+
+To test whether the flow of an application is performing as designed from start to finish.
+Before running below command, kindly make sure that your applications is running on 4200 port separately. since this port number is configured in protractor.config.js
+Run `npm run test-e2e` to execute the e2e test.
+
 ## Deployment
 
 This project is deployed in below link for testing,

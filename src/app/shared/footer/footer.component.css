@@ -1,11 +1,10 @@
-
 /* Sticky footer styles
 -------------------------------------------------- */
 .footer {
     background-color: #337ab7;
     bottom: 0;
     height: 60px;
-    position: absolute;
+    position: fixed;
     text-align: center;
     width: 100%;
 }
