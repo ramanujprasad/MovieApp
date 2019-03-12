@@ -34,7 +34,7 @@ export const LANG_EN_TRANS = {
     'movie.content.search.result.notfound.title': 'Sorry, we didnot find any matching result.',
     'movie.content.search.result.notfound.content': 'Please try with other combination...',
     // Featured page label
-    'movie.content.featured.result.title': ' Search Results',
+    'movie.content.featured.result.title': 'Featured Movies',
     'movie.content.featured.result.plot.label': 'Plot',
     'movie.content.featured.result.awards.label': 'Awards',
     // Page not found label

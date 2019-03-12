@@ -36,7 +36,7 @@ describe('Movie App', function () {
     it('Searched movie should give error if not found', function () {
         element(by.css('input[name="inputTitle"]')).clear().sendKeys('nomovie');
         element(by.css('.search-btn')).click();
-        expect(element(by.css('.no-result')).getText()).toEqual("Sorry, we didn't find any matching result.");
+        expect(element(by.css('.no-result')).getText()).toEqual("Sorry, we didnot find any matching result.");
     });
 
     it('Searched movie should be display in the result', function () {

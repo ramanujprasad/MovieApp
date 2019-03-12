@@ -34,7 +34,7 @@ export const LANG_NL_TRANS = {
     'movie.content.search.result.notfound.title': 'Sorry, we hebben geen overeenkomend resultaat gevonden.',
     'movie.content.search.result.notfound.content': 'Probeer alsjeblieft met een andere combinatie ...',
     // Featured page label
-    'movie.content.featured.result.title': 'Zoekresultaten',
+    'movie.content.featured.result.title': 'Aanbevolen films',
     'movie.content.featured.result.plot.label': 'Plot',
     'movie.content.featured.result.awards.label': 'Awards',
     // Page not found label
