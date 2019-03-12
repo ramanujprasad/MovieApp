@@ -9,8 +9,11 @@ import { FeaturedComponent } from './featured/featured.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { MoviesService } from './core/services/movies.service';
-import { SearchComponent } from './search/search.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SearchComponent } from './search/search.component';
+import { TranslateService } from './core/services/translate.service';
+import { TranslationProvider } from './core/internationalization/translations';
+import { TranslatePipe } from './core/internationalization/translate.pipe';
 
 
 @NgModule({
@@ -20,7 +23,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     FooterComponent,
     HeaderComponent,
     PageNotFoundComponent,
-    SearchComponent
+    SearchComponent,
+    TranslatePipe
   ],
   imports: [
     AppRoutingProvider,
@@ -31,7 +35,9 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     RouterModule
   ],
   providers: [
-    MoviesService
+    MoviesService,
+    TranslationProvider,
+    TranslateService
   ],
   bootstrap: [
     AppComponent

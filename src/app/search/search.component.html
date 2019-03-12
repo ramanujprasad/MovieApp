@@ -1,13 +1,13 @@
 <!-- Search Area -->
 <div>
-    <h2>Search Movies</h2>
+    <h2>{{'movie.content.search.title' | translate}}</h2>
     <form [formGroup]="myForm" novalidate (ngSubmit)="searchMovies()">
         <div class="row">
             <div class="form-group col-md-8 col-sm-6 col-xs-12">
-                <input type="text" class="form-control" name="inputTitle" placeholder="Search for a movie by title name" formControlName="inputTitle">
+                <input type="text" class="form-control" name="inputTitle" placeholder="{{'movie.content.search.placeholder' | translate}}" formControlName="inputTitle">
                 <div *ngIf="myForm.controls['inputTitle'].invalid && (myForm.controls['inputTitle'].dirty || myForm.controls['inputTitle'].touched)" class="alert alert-danger">
                     <div *ngIf="myForm.controls['inputTitle'].errors.required">
-                        Please provide movie title and search...
+                        {{'movie.content.search.required' | translate}}
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                 </select>
             </div>
             <div class="form-group col-md-2 col-sm-12 col-xs-12">
-                <button type="submit" class="btn btn-primary search-btn" [disabled]='myForm.invalid'>Search</button>
+                <button type="submit" class="btn btn-primary search-btn" [disabled]='myForm.invalid'>{{'movie.content.search.button' | translate}}</button>
             </div>
         </div>
     </form>
@@ -26,7 +26,7 @@
 <!-- Search Result Area -->
 <div *ngIf="isDone" class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Search Results</h3>
+        <h3 class="panel-title">{{'movie.content.search.result.title' | translate}}</h3>
     </div>
     <div *ngIf="resultedMovie?.Title && hasMovieFound" class="panel-body">
         <div class="row">
@@ -47,28 +47,28 @@
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <h5 *ngIf="plot">
-                                    <b class="text-primary">Plot: </b>
+                                    <b class="text-primary">{{'movie.content.search.result.plot.label' | translate}}: </b>
                                     <span>{{plot}} 
-                                        <span *ngIf="hasMore" (click) = "readMorePlot()" class="read-more">Read more</span> 
-                                        <span *ngIf="!hasMore && this.plot.length > 200" (click) = "readLessPlot()" class="read-more">Read less</span>
+                                        <span *ngIf="hasMore" (click) = "readMorePlot()" class="read-more">{{'movie.content.search.result.plot.label.readmore' | translate}}</span> 
+                                        <span *ngIf="!hasMore && this.plot.length > 200" (click) = "readLessPlot()" class="read-more">{{'movie.content.search.result.plot.label.readless' | translate}}</span>
                                     </span>
                                 </h5>
                                 <h5 *ngIf="resultedMovie?.Rated">
-                                    <b class="text-primary">Rated: </b>
+                                    <b class="text-primary">{{'movie.content.search.result.rated.label' | translate}}: </b>
                                     <span>{{resultedMovie?.Rated}}</span>
                                 </h5>
                                 <h5 *ngIf="resultedMovie?.Runtime">
-                                    <b class="text-primary">Runtime: </b>
+                                    <b class="text-primary">{{'movie.content.search.result.runtime.label' | translate}} Runtime: </b>
                                     <span>{{resultedMovie?.Runtime}}</span>
                                 </h5>
                                 <h5 *ngIf="genereList">
-                                    <b class="text-primary">Genre:</b>
+                                    <b class="text-primary">{{'movie.content.search.result.genere.label' | translate}}:</b>
                                     <ul>
                                         <li *ngFor="let genere of genereList">{{genere}}</li>
                                     </ul>
                                 </h5>
                                 <h5 *ngIf="languageList">
-                                    <b class="text-primary">Language:</b>
+                                    <b class="text-primary">{{'movie.content.search.result.language.label' | translate}}:</b>
                                     <ul>
                                         <li *ngFor="let language of languageList">{{language}}</li>
                                     </ul>
@@ -76,23 +76,23 @@
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <h5 *ngIf="resultedMovie?.Released">
-                                    <b class="text-primary">Released: </b>
+                                    <b class="text-primary">{{'movie.content.search.result.released.label' | translate}}: </b>
                                     <span>{{resultedMovie?.Released}}</span>
                                 </h5>
                                 <h5 *ngIf="actorsList">
-                                    <b class="text-primary">Actors:</b>
+                                    <b class="text-primary">{{'movie.content.search.result.actors.label' | translate}}:</b>
                                     <ul>
                                         <li *ngFor="let actor of actorsList">{{actor}}</li>
                                     </ul>
                                 </h5>
                                 <h5 *ngIf="writerList">
-                                    <b class="text-primary">Writer:</b>
+                                    <b class="text-primary">{{'movie.content.search.result.writer.label' | translate}}:</b>
                                     <ul>
                                         <li *ngFor="let writer of writerList">{{writer}}</li>
                                     </ul>
                                 </h5>
                                 <h5 *ngIf="directorList">
-                                    <b class="text-primary">Director:</b>
+                                    <b class="text-primary">{{'movie.content.search.result.director.label' | translate}}:</b>
                                     <ul>
                                         <li *ngFor="let director of directorList">{{director}}</li>
                                     </ul>
@@ -100,27 +100,27 @@
                             </div>
                             <div class="col-md-3 col-sm-6 col-xs-12">
                                 <h5 *ngIf="listOfRatings">
-                                    <b class="text-primary">Ratings:</b>
+                                    <b class="text-primary">{{'movie.content.search.result.ratings.label' | translate}}:</b>
                                     <ul>
                                         <li *ngFor="let ratings of listOfRatings">{{ratings.Source}}: <span>{{ratings.Value}}</span></li>
                                     </ul>
                                 </h5>
                                 <h5 *ngIf="resultedMovie?.imdbRating">
-                                    <b class="text-primary">imdbRating: </b>
+                                    <b class="text-primary">{{'movie.content.search.result.imdbRating.label' | translate}}: </b>
                                     <span>{{resultedMovie?.imdbRating}}</span>
                                 </h5>
                                 <h5 *ngIf="resultedMovie?.imdbVotes">
-                                    <b class="text-primary">imdbVotes: </b>
+                                    <b class="text-primary">{{'movie.content.search.result.imdbVotes.label' | translate}}: </b>
                                     <span>{{resultedMovie?.imdbVotes}}</span>
                                 </h5>
                                 <h5 *ngIf="resultedMovie?.Type">
-                                    <b class="text-primary">Type: </b>
+                                    <b class="text-primary">{{'movie.content.search.result.type.label' | translate}}: </b>
                                     <span>{{resultedMovie?.Type}}</span>
                                 </h5>
                             </div>
                         </div>
                         <div *ngIf="resultedMovie?.Awards" class="card bg-primary text-white">
-                            <p class="text-center">Awards: <b>{{resultedMovie?.Awards}}</b></p>
+                            <p class="text-center">{{'movie.content.search.result.awards.label' | translate}}: <b>{{resultedMovie?.Awards}}</b></p>
                         </div>
                     </div>
                 </div>
@@ -129,7 +129,7 @@
     </div>
     <!-- No result found Area -->
     <div *ngIf="!resultedMovie?.Title || !hasMovieFound" class="text-center text-danger">
-        <h3 class="no-result">Sorry, we didn't find any matching result.</h3>
-        <p>Please try with other combination...</p>
+        <h3 class="no-result">{{'movie.content.search.result.notfound.title' | translate}}</h3>
+        <p>{{'movie.content.search.result.notfound.content' | translate}}</p>
     </div>
 </div>

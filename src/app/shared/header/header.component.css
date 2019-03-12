@@ -18,6 +18,10 @@
     font-size: 20px;
     margin: 10px 5px 0 0;
 }
+.active>a {
+    background-color: #FFF;
+    color: #337ab7;
+}
 /* media query for mobile size of max width 768px */
 @media only screen and (max-width: 768px) {
     .movie-icon {

@@ -1,6 +1,9 @@
 <div class="container">
     <div class="transbox">
-        <h1>Opps! You have entered an invalid URL.</h1>
-        <p>Click <a routerLink="/search">here</a> to go to the home page.</p>
+        <h1>{{'movie.content.pagenotfound.title' | translate}}</h1>
+        <p>{{'movie.content.pagenotfound.click' | translate}} 
+            <a routerLink="/search">{{'movie.content.pagenotfound.here' | translate}}</a> 
+            {{'movie.content.pagenotfound.backpage' | translate}}
+        </p>
     </div>
 </div>

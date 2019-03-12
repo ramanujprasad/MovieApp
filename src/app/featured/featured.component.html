@@ -1,7 +1,7 @@
 <!-- Featured movie result template to populate the service response -->
 <div *ngIf="isDone" class="panel panel-default">
     <div class="panel-heading">
-        <h3 class="panel-title">Featured Movies</h3>
+        <h3 class="panel-title">{{'movie.content.featured.result.title' | translate}}</h3>
     </div>
     <div class="panel-body">
       <div *ngFor="let movie of movieList" class="col-md-6 col-sm-6 col-xs-12">
@@ -18,11 +18,11 @@
                   </div>
                   <div class="col-md-6 col-sm-6 col-xs-12">
                       <h5 *ngIf="movie?.Plot">
-                          <b class="text-primary">Plot: </b>
+                          <b class="text-primary">{{'movie.content.featured.result.plot.label' | translate}}: </b>
                           <span>{{movie?.Plot}}</span>
                       </h5>
                       <h5 *ngIf="movie?.Awards" >
-                          <b class="text-primary">Awards: </b>
+                          <b class="text-primary">{{'movie.content.featured.result.awards.label' | translate}}: </b>
                           <span>{{movie?.Awards}}</span>
                       </h5>
                   </div>
