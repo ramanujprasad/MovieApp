@@ -5,7 +5,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const ScriptExtPlugin = require('script-ext-html-webpack-plugin');
 const { AngularCompilerPlugin } = require('@ngtools/webpack');
 const webpack = require('webpack');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 
@@ -21,13 +21,8 @@ module.exports = function () {
         },
         mode: 'development',
         optimization: {
-            minimizer: [
-                new UglifyJsPlugin({
-                    cache: true,
-                    parallel: true,
-                    sourceMap: true
-                })
-            ]
+            minimize: true,
+            minimizer: [new TerserPlugin()],
         },
 
         /**
